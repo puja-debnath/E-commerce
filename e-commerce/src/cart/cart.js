@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux';
 import {
   increment,
@@ -67,8 +68,19 @@ export default function Cart() {
                                   <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                                 </div>
                                 <div className="flex flex-1 items-end justify-between text-sm">
-                                  <p className="text-gray-500">Qty {product.quantity}</p>
-
+                                  <div className='text-gray-700'>
+                                  <lebel 
+                                  htmlfor="quantity"
+                                  className="inline mr-5 text-sm font-medium leading-6">
+                                   Qty                                 
+                                  </lebel>
+                                   
+                                  <select  >
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                  </select>
+                                  </div>
+                                  
                                   <div className="flex">
                                     <button
                                       type="button"
@@ -102,14 +114,16 @@ export default function Cart() {
                     <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                       <p>
                         or
+                        <Link to="/">
                         <button
                           type="button"
-                          className="font-medium text-indigo-600 hover:text-indigo-500"
+                          className="font-medium text-indigo-600 hover:text-indigo-500 ml-4"
                           onClick={() => setOpen(false)}
                         >
                           Continue Shopping
                           <span aria-hidden="true"> &rarr;</span>
                         </button>
+                        </Link>
                       </p>
                     </div>
                   </div>
