@@ -10,6 +10,7 @@ import { Fragment} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
+
 const products = [
   {
     id: 1,
@@ -35,7 +36,8 @@ const products = [
  
 ]
 
-
+const addresses = 
+}
 
 function CheckoutPage() {
   return (
@@ -174,47 +176,69 @@ function CheckoutPage() {
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
-       
+          <h2 className="text-base font-semibold leading-7 text-gray-900">Address</h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600">
+          choose from existing address
+          </p>
+          <ul role="list" className="divide-y divide-gray-100">
+      {addresses.map((address) => (
+        <li key={addresses.email} className="flex justify-between gap-x-6 py-5">
+          <div className="flex min-w-0 gap-x-4">
+           
+            <div className="min-w-0 flex-auto">
+              <p className="text-sm font-semibold leading-6 text-gray-900">{addresses.name}</p>
+              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{addresses.email}</p>
+            </div>
+          </div>
+          <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <p className="text-sm leading-6 text-gray-900">{person.role}</p>
+            {person.lastSeen ? (
+              <p className="mt-1 text-xs leading-5 text-gray-500">
+                Last seen <time dateTime={person.lastSeenDateTime}>{person.lastSeen}</time>
+              </p>
+            ) : (
+              <div className="mt-1 flex items-center gap-x-1.5">
+                <div className="flex-none rounded-full bg-emerald-500/20 p-1">
+                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                </div>
+                <p className="text-xs leading-5 text-gray-500">Online</p>
+              </div>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+
+
           <div className="mt-10 space-y-10">
           
             <fieldset>
-              <legend className="text-sm font-semibold leading-6 text-gray-900">Push Notifications</legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">These are delivered via SMS to your mobile phone.</p>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">payent methods</legend>
+              <p className="mt-1 text-sm leading-6 text-gray-600">Choose one</p>
               <div className="mt-6 space-y-6">
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="push-everything"
-                    name="push-notifications"
+                    id="Cash"
+                    name="payments"
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="push-everything" className="block text-sm font-medium leading-6 text-gray-900">
-                    Everything
+                  <label htmlFor="cash" className="block text-sm font-medium leading-6 text-gray-900">
+                   Cash
                   </label>
                 </div>
                 <div className="flex items-center gap-x-3">
                   <input
-                    id="push-email"
-                    name="push-notifications"
+                    id="card"
+                    name="payments"
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="push-email" className="block text-sm font-medium leading-6 text-gray-900">
-                    Same as email
+                  <label htmlFor="card" className="block text-sm font-medium leading-6 text-gray-900">
+                   Card payment
                   </label>
                 </div>
-                <div className="flex items-center gap-x-3">
-                  <input
-                    id="push-nothing"
-                    name="push-notifications"
-                    type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                  />
-                  <label htmlFor="push-nothing" className="block text-sm font-medium leading-6 text-gray-900">
-                    No push notifications
-                  </label>
-                </div>
+             
               </div>
             </fieldset>
           </div>
