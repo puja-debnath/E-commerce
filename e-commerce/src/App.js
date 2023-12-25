@@ -1,12 +1,12 @@
 import React from 'react';
 import { Counter } from './features/counter/Counter';
 import './App.css';
-import Home from './pages/Home';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckoutPage';
-import ProductDetails from './features/Product-list/components/ProductDetails';
+import Home from "./features/pages/Home"
+import LoginPage from './features/pages/LoginPage';
+import SignupPage from './features/pages/SignupPage';
+import CartPage from './features/pages/CartPage';
+import CheckoutPage from './features/pages/CheckoutPage';
+import ProductDetailsPage from './features/pages/ProductDetailsPage';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -19,8 +19,9 @@ const router = createBrowserRouter([
   { path: "/login", element: (<LoginPage></LoginPage>)},
   { path: "/cart", element: (<CartPage></CartPage>)},
   { path: "/checkout", element: (<CheckoutPage></CheckoutPage>)},
-  { path: "/product-details", element: (<ProductDetails></ProductDetails>)},
+  { path: "/product-details", element: (<ProductDetailsPage></ProductDetailsPage>)},
 ]);
+
 
 function App() {
   return (
