@@ -81,6 +81,7 @@ export default function ProductList() {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const products = useSelector(state => state.product.products)
 
   return (
     <div>
