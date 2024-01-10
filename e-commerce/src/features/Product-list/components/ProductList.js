@@ -1,7 +1,7 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { increment, incrementAsync, selectCount } from "../ProductListslice";
+import { fetchAllProductsAsync, increment, incrementAsync, selectCount } from "../ProductListslice";
 
 import {
   Dialog,
@@ -78,11 +78,16 @@ const filters = [
 
 
 export default function ProductList() {
-  const count = useSelector(selectCount);
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(state => state.product.products)
 
+
+     useEffect(() =>{
+          dispatch(fetchAllProductsAsync)
+     },[dispatch])
+
+     
   return (
     <div>
       <div className="bg-white">
