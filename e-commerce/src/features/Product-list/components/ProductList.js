@@ -1,7 +1,9 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchAllProductsAsync, increment, incrementAsync, selectCount } from "../ProductListslice";
+import { fetchAllProductsAsync,
+  
+  selectAllproducts } from "../ProductListslice";
 
 import {
   Dialog,
@@ -40,8 +42,8 @@ const subCategories = [
 ];
 const filters = [
   {
-    id: "color",
-    name: "Color",
+    id: "Brands",
+    name: "Brands",
     options: [
       { value: "white", label: "White", checked: false },
       { value: "beige", label: "Beige", checked: false },
@@ -62,28 +64,17 @@ const filters = [
       { value: "accessories", label: "Accessories", checked: false },
     ],
   },
-  {
-    id: "size",
-    name: "Size",
-    options: [
-      { value: "2l", label: "2L", checked: false },
-      { value: "6l", label: "6L", checked: false },
-      { value: "12l", label: "12L", checked: false },
-      { value: "18l", label: "18L", checked: false },
-      { value: "20l", label: "20L", checked: false },
-      { value: "40l", label: "40L", checked: true },
-    ],
-  },
+ 
 ];
 
 
 export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const products = useSelector(state => state.product.products)
+  const products = useSelector(selectAllproducts)
 
 
-     useEffect(() =>{
+  useEffect(() =>{
           dispatch(fetchAllProductsAsync)
      },[dispatch])
 
@@ -447,7 +438,7 @@ export default function ProductList() {
                   <nav
                     className="isolate inline-flex -space-x-px rounded-md shadow-sm"
                     aria-label="Pagination"
-                  >
+                  >\
                     <a
                       href="#"
                       className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"

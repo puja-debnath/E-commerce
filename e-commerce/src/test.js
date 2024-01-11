@@ -1,5 +1,4 @@
-{
-  "products": [
+const products = [
     {
       "id": 1,
       "title": "iPhone 9",
@@ -217,4 +216,6 @@
     }
     
   ]
-}
+
+ const categories = new Set([...products.map(p => p.category)])
+categories.map(c => ({ value:c , lebel:c.split('-').join(' '),checked:false}))
