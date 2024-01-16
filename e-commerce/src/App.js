@@ -14,7 +14,7 @@ import {
   Link,}
   from "react-router-dom"
 const router = createBrowserRouter([
-  {path: "/", element: ( <Home></Home>),},
+  {path: "/", element: ( <Home></Home>)},
   {path: "/signup",element: (<SignupPage></SignupPage>) },
   { path: "/login", element: (<LoginPage></LoginPage>)},
   { path: "/cart", element: (<CartPage></CartPage>)},
