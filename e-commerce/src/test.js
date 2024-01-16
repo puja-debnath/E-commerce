@@ -7,7 +7,7 @@ const products = [
       "discountPercentage": 12.96,
       "rating": 4.69,
       "stock": 94,
-      "brand": "Apple",
+      "brand": "puja",
       "category": "smartphones",
       "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
       "images": [
@@ -180,5 +180,6 @@ const products = [
     
   ]
 
- const categories = new Set([...products.map(p => p.category)])
-categories.map(c => ({ value:c , lebel:c.split('-').join(' '),checked:false}))
+ const brands = [...new Set([...products.map(p => p.brand)])]
+ 
+brands.map(c => ({ value:c , lebel:c.split('-').join(' '),checked:false}))

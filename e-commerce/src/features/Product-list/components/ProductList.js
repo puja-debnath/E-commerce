@@ -1,9 +1,10 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchAllProductsAsync,
-  
-  selectAllproducts } from "../ProductListslice";
+import {
+   fetchAllProductsAsync,
+   selectAllproducts 
+  } from "../ProductListslice";
 
 import {
   Dialog,
@@ -57,8 +58,8 @@ const filters = [
     id: "category",
     name: "Category",
     options: [
-      { value: "new-arrivals", label: "New Arrivals", checked: false },
-      { value: "sale", label: "Sale", checked: false },
+      { value: "smartphones", label: "smartphones", checked: false },
+      { value: "laptops", label: "laptops", checked: false },
       { value: "travel", label: "Travel", checked: true },
       { value: "organization", label: "Organization", checked: false },
       { value: "accessories", label: "Accessories", checked: false },
@@ -75,7 +76,7 @@ export default function ProductList() {
 
 
   useEffect(() =>{
-          dispatch(fetchAllProductsAsync)
+          dispatch(fetchAllProductsAsync())
      },[dispatch])
 
      
@@ -83,7 +84,6 @@ export default function ProductList() {
     <div>
       <div className="bg-white">
         <div>
-          {/* Mobile filter dialog */}
           <Transition.Root show={mobileFiltersOpen} as={Fragment}>
             <Dialog
               as="div"
