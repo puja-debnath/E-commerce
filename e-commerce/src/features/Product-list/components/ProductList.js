@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
    fetchAllProductsAsync,
-   selectAllproducts 
+   selectAllproducts ,
+   fetchProductByFiltersAsync
   } from "../ProductListslice";
 
 import {
@@ -73,7 +74,14 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(selectAllproducts)
+  const[filter,setFilter] = useState({})
 
+  const handleFilter =(e,section,option) =>{
+    const newFilter = {...filter,[section.id]:option.value}
+    setFilter(newFilter)
+    dispatch(fetchProductByFiltersAsync(newFilter))
+     console.log(section.id, option.value)
+  }
 
   useEffect(() =>{
           dispatch(fetchAllProductsAsync())
@@ -339,6 +347,7 @@ export default function ProductList() {
                                     defaultValue={option.value}
                                     type="checkbox"
                                     defaultChecked={option.checked}
+                                    onChange={e=>handleFilter(e,section,option)}
                                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   />
                                   <label
@@ -361,7 +370,7 @@ export default function ProductList() {
                 <div className="lg:col-span-3">
                   {" "}
                   <div className="bg-white-600">
-                    <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 ">
+                    <div  className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 ">
                       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 sm:grid-cols-2 xl:gap-x-8">
                         {products.map((product) => (
                           <Link to="/product-details">

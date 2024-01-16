@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAllProducts } from './ProductListApi';
+import { fetchAllProducts ,fetchProductByFilter} from './ProductListApi';
 
 const initialState = {
   products: [],
@@ -13,6 +13,13 @@ export const fetchAllProductsAsync = createAsyncThunk(
   }
 );
 
+export const fetchProductByFiltersAsync = createAsyncThunk(
+  'product/fetchProductByFilter',
+  async (filter) => {
+    const response = await fetchProductByFilter(filter);
+    return response.data;
+  }
+);
 export const productSlice = createSlice({
   name: 'product',
   initialState,
@@ -29,6 +36,13 @@ export const productSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchAllProductsAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.products = action.payload;
+      })
+      .addCase(fetchProductByFiltersAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchProductByFiltersAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.products = action.payload;
       });
