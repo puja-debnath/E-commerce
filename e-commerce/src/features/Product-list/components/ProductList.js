@@ -29,11 +29,9 @@ function classNames(...classes) {
 }
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { name: "Best Rating", sort: "rating",order:"desc" , current: false },
+  { name: "Price: Low to High", sort: "price", order:"asc", current: false },
+  { name: "Price: High to Low", sort: "price", order:"desc" ,current: false },
 ];
 // const subCategories = [
 //   { name: "Totes", href: "#" },
@@ -80,8 +78,14 @@ export default function ProductList() {
     const newFilter = {...filter,[section.id]:option.value}
     setFilter(newFilter)
     dispatch(fetchProductByFiltersAsync(newFilter))
-     console.log(section.id, option.value)
   }
+  
+  const handleSort =(e,option) =>{
+    const newFilter = {...filter, _sort:option.sort, _order:option.order}
+    setFilter(newFilter)
+    dispatch(fetchProductByFiltersAsync(newFilter))
+  }
+
 
   useEffect(() =>{
           dispatch(fetchAllProductsAsync())
@@ -248,8 +252,8 @@ export default function ProductList() {
                         {sortOptions.map((option) => (
                           <Menu.Item key={option.name}>
                             {({ active }) => (
-                              <a
-                                href={option.href}
+                              <p
+                              onChange={e=>handleSort(e,option)}
                                 className={classNames(
                                   option.current
                                     ? "font-medium text-gray-900"
@@ -259,7 +263,7 @@ export default function ProductList() {
                                 )}
                               >
                                 {option.name}
-                              </a>
+                              </p>
                             )}
                           </Menu.Item>
                         ))}
@@ -367,10 +371,10 @@ export default function ProductList() {
                 </form>
 
                 {/* Product grid */}
-                <div className="lg:col-span-3">
+                <div className="lg:col-span-4">
                   {" "}
                   <div className="bg-white-600">
-                    <div  className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 ">
+                    <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 ">
                       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 sm:grid-cols-2 xl:gap-x-8">
                         {products.map((product) => (
                           <Link to="/product-details">
