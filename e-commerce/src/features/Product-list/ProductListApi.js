@@ -9,6 +9,9 @@ export function fetchAllProducts() {
 }
 
 export function fetchProductByFilter(filter) {
+ // filter = {"category":["smartphone","laptops"]}
+ //sort = {_sort:"price" _order:"desc"}
+  //todo:on server it will support multi values
     let querystring = ''
     for(let key in filter){
       querystring += `${key} = ${filter[key]}&`

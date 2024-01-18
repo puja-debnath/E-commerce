@@ -76,10 +76,12 @@ export default function ProductList() {
   const[filter,setFilter] = useState({})
 
   const handleFilter =(e,section,option) =>{
-    console.log(section.checked)
-    const newFilter = {...filter,[section.id]:option.value}
+    console.log(e.target.checked)
+    //todo: on server it will support multiple categories
+    let newFilter  = {...filter}
+    e.target.checked === true ? newFilter[section.id] = option.value : delete newFilter[section.id]
+ 
     setFilter(newFilter)
-    dispatch(fetchProductByFiltersAsync(newFilter))
     console.log(section.id,option.value)
 
   }
@@ -88,13 +90,12 @@ export default function ProductList() {
     const newFilter = {...filter, _sort:option.sort, _order:option.order}
     setFilter(newFilter)
     dispatch(fetchProductByFiltersAsync(newFilter))
-    console.log(option.value)
   }
 
 
   useEffect(() =>{
-          dispatch(fetchAllProductsAsync())
-     },[dispatch])
+          dispatch(fetchProductByFiltersAsync(filter))
+     },[dispatch, filter])
 
      
   return (
